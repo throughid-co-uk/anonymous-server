@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.autoconfigure.cache.JCacheManagerCustomizer;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.cache.autoconfigure.JCacheManagerCustomizer;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.ContextConfiguration;
 
 import javax.cache.CacheManager;
@@ -20,7 +20,7 @@ class EhCacheConfigurationTest extends SpringMockMvcTestSupport {
 
     private EhCacheConfiguration cut;
 
-    @MockBean
+    @MockitoBean
     private CacheManager cacheManager;
 
     @BeforeEach

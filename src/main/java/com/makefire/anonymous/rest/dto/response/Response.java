@@ -1,6 +1,6 @@
 package com.makefire.anonymous.rest.dto.response;
 
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import tools.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
 import java.time.ZoneId;
@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 @JsonNaming
+@com.fasterxml.jackson.annotation.JsonPropertyOrder({"code", "count", "timestamp", "message", "data"})
 public class Response<T>{
     private int code;
     private int count;

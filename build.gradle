@@ -1,12 +1,15 @@
 plugins {
-    id 'org.springframework.boot' version '2.6.15'
-    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'org.springframework.boot' version '4.2.0'
+    id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
 }
 
 group = 'com.makefire'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 ext['lombok.version'] = '1.18.34'
 
 configurations {
@@ -25,10 +28,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
-    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.2.1'
     implementation 'org.projectlombok:lombok:1.18.34'
     implementation 'org.projectlombok:lombok:1.18.34'
-    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.8'
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:2.1.0'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'
@@ -37,21 +40,25 @@ dependencies {
     //cache
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation group: 'javax.cache', name: 'cache-api', version: '1.1.1'
-    implementation group: 'org.hibernate', name: 'hibernate-jcache', version: '5.4.19.Final'
+    implementation 'org.hibernate.orm:hibernate-jcache'
     implementation group: 'org.ehcache', name: 'ehcache', version: '3.8.1'
 
     //aop
-    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.boot:spring-boot-starter-aspectj'
 
     //test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+    testImplementation 'org.springframework.boot:spring-boot-starter-jackson-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.springframework.security:spring-security-test'
 
     // Querydsl
-    implementation 'com.querydsl:querydsl-jpa'
+    implementation 'com.querydsl:querydsl-jpa:5.1.0:jakarta'
 
     // Querydsl JPAAnnotationProcessor 사용 지정
-    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
+    annotationProcessor 'com.querydsl:querydsl-apt:5.1.0:jakarta'
     annotationProcessor "jakarta.persistence:jakarta.persistence-api" // java.lang.NoClassDefFoundError(javax.annotation.Entity) 발생 대응
     annotationProcessor "jakarta.annotation:jakarta.annotation-api" // java.lang.NoClassDefFoundError(javax.annotation.Generated) 발생 대응
 }
