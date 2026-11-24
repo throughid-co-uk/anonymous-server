@@ -2,17 +2,17 @@ package com.makefire.anonymous.rest.core;
 
 import org.springframework.http.HttpStatus;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ApiResult<T> {
 
-    @ApiModelProperty(value = "API 요청 처리 결과", required = true)
+    @Schema(description = "API 요청 처리 결과", required = true)
     private final boolean success;
 
-    @ApiModelProperty(value = "success가 true라면, API 요청 처리 응답값")
+    @Schema(description = "success가 true라면, API 요청 처리 응답값")
     private final T response;
 
-    @ApiModelProperty(value = "success가 false라면, API 요청 처리 응답값")
+    @Schema(description = "success가 false라면, API 요청 처리 응답값")
     private final ApiError error;
 
     private ApiResult(boolean success, T response, ApiError error) {

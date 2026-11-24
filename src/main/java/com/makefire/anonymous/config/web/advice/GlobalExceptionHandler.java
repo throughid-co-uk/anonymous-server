@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 @RestControllerAdvice
 @Slf4j
@@ -46,6 +46,18 @@ public class GlobalExceptionHandler extends RestSupport {
     public ApiResult<?> handleNotFound(Exception e) {
         log.info("ModelNotFoundException Exception, message: {{}}", e.getMessage());
         return ApiResult.ERROR(e, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(org.springframework.web.servlet.resource.NoResourceFoundException.class)
+    public org.springframework.http.ResponseEntity<?> handleMissingResource(
+            org.springframework.web.servlet.resource.NoResourceFoundException e,
+            jakarta.servlet.http.HttpServletRequest request) {
+        java.util.Map<String, Object> body = new java.util.LinkedHashMap<>();
+        body.put("timestamp", java.time.Instant.now().toString());
+        body.put("status", 404);
+        body.put("error", "Not Found");
+        body.put("path", request.getRequestURI());
+        return org.springframework.http.ResponseEntity.status(404).body(body);
     }
 
     @ExceptionHandler(value = {Exception.class})
