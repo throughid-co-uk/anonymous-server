@@ -47,7 +47,7 @@ public class ApiError {
         if (error instanceof org.springframework.http.converter.HttpMessageNotReadableException
                 && error.getCause() instanceof tools.jackson.core.exc.UnexpectedEndOfInputException e) {
             return "JSON parse error: " + e.getOriginalMessage()
-                    + "; nested exception is com.fasterxml.jackson.core.io.JsonEOFException: " + e.getOriginalMessage()
+                    + "; nested exception is tools.jackson.core.exc.UnexpectedEndOfInputException: " + e.getOriginalMessage()
                     + "\n at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: "
                     + e.getLocation().getLineNr() + ", column: " + e.getLocation().getColumnNr() + "]";
         }
