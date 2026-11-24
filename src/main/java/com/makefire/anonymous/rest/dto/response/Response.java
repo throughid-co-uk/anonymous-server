@@ -9,6 +9,7 @@ import java.util.List;
 
 @Data
 @JsonNaming
+@com.fasterxml.jackson.annotation.JsonPropertyOrder({"code", "count", "timestamp", "message", "data"})
 public class Response<T>{
     private int code;
     private int count;
