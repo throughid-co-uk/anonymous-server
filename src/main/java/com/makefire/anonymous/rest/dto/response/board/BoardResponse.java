@@ -28,7 +28,7 @@ public class BoardResponse {
 
     @Builder
     public BoardResponse(Long id, String title, String contents, String author, LocalDateTime createDate, LocalDateTime modifiedDate) {
-        this.id = id;
+        this.id = id == null ? 0L : id;
         this.title = title;
         this.contents = contents;
         this.author = author;

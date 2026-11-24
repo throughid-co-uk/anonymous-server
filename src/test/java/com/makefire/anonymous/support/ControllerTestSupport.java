@@ -1,6 +1,6 @@
 package com.makefire.anonymous.support;
 
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.test.context.ActiveProfiles;
 
 /**
