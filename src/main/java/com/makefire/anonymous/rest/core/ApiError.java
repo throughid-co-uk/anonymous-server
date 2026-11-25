@@ -1,14 +1,14 @@
 package com.makefire.anonymous.rest.core;
 import org.springframework.http.HttpStatus;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ApiError {
 
-    @ApiModelProperty(value = "오류 메시지", required = true)
+    @Schema(description = "오류 메시지", required = true)
     private final String message;
 
-    @ApiModelProperty(value = "HTTP 오류코드", required = true)
+    @Schema(description = "HTTP 오류코드", required = true)
     private final int status;
 
     ApiError(Throwable throwable, HttpStatus status) {

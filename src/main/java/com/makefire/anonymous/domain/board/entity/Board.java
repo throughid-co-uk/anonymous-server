@@ -6,10 +6,10 @@ import com.makefire.anonymous.rest.dto.request.board.BoardRequest;
 import lombok.*;
 import org.springframework.util.Assert;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
 
 /**
  * packageName : com.makefire.anonymous
