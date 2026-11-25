@@ -6,8 +6,8 @@ import com.makefire.anonymous.rest.dto.response.board.BoardResponse;
 import lombok.*;
 import org.springframework.util.Assert;
 
-import javax.persistence.GeneratedValue;
-import javax.validation.constraints.NotNull;
+import jakarta.persistence.GeneratedValue;
+import jakarta.validation.constraints.NotNull;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
