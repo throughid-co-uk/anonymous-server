@@ -1,4 +1,9 @@
 spring:
+  jackson:
+    use-jackson2-defaults: true
+    deserialization:
+      fail-on-null-for-primitives: false
+      fail-on-trailing-tokens: false
   profiles:
     include: local, config.oauth
   mvc:

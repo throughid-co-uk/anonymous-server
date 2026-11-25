@@ -20,11 +20,11 @@ class HealthCheckerControllerTest extends SpringMockMvcTestSupport {
     @DisplayName("서버체킹 초기 테스트 OK를 반환한다.")
     @Test
     void healthCheckTest() throws Exception {
-        this.mockMvc.perform(get("/v1/healthCheck").accept(MediaType.APPLICATION_JSON_UTF8))
+        this.mockMvc.perform(get("/v1/healthCheck").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
                 .andDo(print())
                 .andExpectAll(
                         status().is(HttpStatus.OK.value()),
-                        content().contentType(MediaType.APPLICATION_JSON_UTF8),
+                        content().contentType(MediaType.parseMediaType("application/json;charset=UTF-8")),
                         jsonPath("timestamp").isNotEmpty(),
                         jsonPath("message").value ("Ok"),
                         jsonPath("data").value("serverChecking..."),
