@@ -1,6 +1,6 @@
 package com.makefire.anonymous.rest.dto.response;
 
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
+import tools.jackson.databind.annotation.JsonNaming;
 import lombok.*;
 
 import java.time.ZoneId;

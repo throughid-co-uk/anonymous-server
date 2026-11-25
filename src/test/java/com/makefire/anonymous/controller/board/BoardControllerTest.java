@@ -1,6 +1,7 @@
 package com.makefire.anonymous.controller.board;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
 import com.makefire.anonymous.rest.dto.request.board.BoardRequest;
 import com.makefire.anonymous.rest.dto.response.board.BoardResponse;
 import com.makefire.anonymous.service.board.BoardService;
@@ -54,7 +55,7 @@ public class BoardControllerTest extends ControllerTestSupport {
 
         mockMvc.perform(post("/board")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(boardRequest)))
+                .content(new JsonMapper().writeValueAsString(boardRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("data.title").value(boardRequest.getTitle()))
                 .andExpect(jsonPath("data.author").value(boardRequest.getAuthor()))
@@ -72,7 +73,7 @@ public class BoardControllerTest extends ControllerTestSupport {
 
         mockMvc.perform(put("/board")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(new ObjectMapper().writeValueAsString(boardUpdateRequest)))
+                .content(new JsonMapper().writeValueAsString(boardUpdateRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("data.title").value(boardUpdateRequest.getTitle()))
                 .andExpect(jsonPath("data.author").value(boardUpdateRequest.getAuthor()))

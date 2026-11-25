@@ -1,6 +1,6 @@
 package com.makefire.anonymous.domain.board.entity;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
+import tools.jackson.databind.ser.Serializers;
 import com.makefire.anonymous.domain.common.BaseEntity;
 import com.makefire.anonymous.rest.dto.request.board.BoardRequest;
 import lombok.*;
