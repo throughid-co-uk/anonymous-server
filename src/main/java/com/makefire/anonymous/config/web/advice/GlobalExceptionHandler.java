@@ -92,9 +92,7 @@ public class GlobalExceptionHandler extends RestSupport {
             String detail = parse.getOriginalMessage();
             var location = parse.getLocation();
             return "JSON parse error: " + detail
-                    + "; nested exception is com.fasterxml.jackson.core.io."
-                    + (parse.getClass().getSimpleName().equals("UnexpectedEndOfInputException")
-                        ? "JsonEOFException" : parse.getClass().getSimpleName()) + ": " + detail
+                    + "; nested exception is " + parse.getClass().getName() + ": " + detail
                     + "\n at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: "
                     + location.getLineNr() + ", column: " + location.getColumnNr() + "]";
         }

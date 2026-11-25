@@ -15,12 +15,18 @@ public class LegacyConfigurationMigration implements EnvironmentPostProcessor {
         if ("ant_path_matcher".equals(environment.getProperty("spring.mvc.pathmatch.matching-strategy"))) {
             settings.put("spring.mvc.pathmatch.matching-strategy", "path-pattern-parser");
         }
+        String url = environment.getProperty("spring.datasource.hikari.jdbc-url",
+                environment.getProperty("spring.datasource.url"));
         if ("org.hibernate.dialect.MySQL5Dialect".equals(environment.getProperty("spring.jpa.properties.hibernate.dialect"))) {
-            settings.put("spring.jpa.properties.hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+            settings.put("spring.jpa.properties.hibernate.dialect",
+                    url != null && url.startsWith("jdbc:h2:")
+                            ? "org.hibernate.dialect.H2Dialect"
+                            : "org.hibernate.dialect.MySQLDialect");
         }
-        String url = environment.getProperty("spring.datasource.hikari.jdbc-url");
         if (url != null && url.startsWith("jdbc:h2:") && !url.contains("NON_KEYWORDS=")) {
-            settings.put("spring.datasource.hikari.jdbc-url", url + ";NON_KEYWORDS=USER");
+            String urlProperty = environment.containsProperty("spring.datasource.hikari.jdbc-url")
+                    ? "spring.datasource.hikari.jdbc-url" : "spring.datasource.url";
+            settings.put(urlProperty, url + ";NON_KEYWORDS=USER");
         }
         settings.put("spring.jackson.use-jackson2-defaults", true);
         settings.put("spring.jackson.serialization.indent-output", false);
